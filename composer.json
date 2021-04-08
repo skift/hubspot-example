@@ -1,0 +1,12 @@
+{
+    "require": {
+        "hubspot/hubspot-php": "dev-master"
+    },
+    "repositories": [
+        
+        {
+            "type": "composer",
+            "url": "https://packagist.org/"
+        }
+    ]
+}
