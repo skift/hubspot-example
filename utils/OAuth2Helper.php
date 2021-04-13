@@ -1,11 +1,8 @@
 <?php
 
 class OAuth2Helper {
-    const CLIENT_ID = '2b9321a7-f94e-4aa8-be97-2f69900f512d';
-    const CLIENT_SECRET = 'e3b00e12-0265-4fbe-8289-ebaad4c3b005';
-    const APP_ID = '36762';
     const APP_REQUIRED_SCOPES = ['contacts', 'oauth', 'forms'];
-    const CALLBACK_PATH = '/oauth/callback';
+    const CALLBACK_PATH = '/callback';
     const TOKENS_KEY = 'tokens';
 
     /**
@@ -16,6 +13,25 @@ class OAuth2Helper {
      */
     public static function get_redirect_uri() {
         return 'http://localhost/packages/hubspot-example/callback.php';
+    }
+
+    public static function generateServerUri(): string
+        {
+            $serverName = $_SERVER['SERVER_NAME'];
+    
+            if (!in_array($_SERVER['SERVER_PORT'], [80, 443])) {
+                $port = ":{$_SERVER['SERVER_PORT']}";
+            } else {
+                $port = '';
+            }
+    
+            if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']) {
+                $scheme = 'https';
+            } else {
+                $scheme = 'http';
+            }
+    
+            return $scheme.'://'.$serverName.$port;
     }
 
     /**
